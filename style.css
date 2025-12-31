@@ -6,53 +6,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
-    /* Realistic Space Color Palette */
-    --bg-primary: #000000;
-    --bg-secondary: #0a0e14;
-    --bg-tertiary: #0d1117;
-    --bg-card: rgba(13, 17, 23, 0.8);
-    --bg-glass: rgba(255, 255, 255, 0.02);
+    /* Deep Space Color Palette - Eye Pleasing */
+    --bg-primary: #030712;
+    --bg-secondary: #0f172a;
+    --bg-tertiary: #1e293b;
+    --bg-card: rgba(15, 23, 42, 0.85);
+    --bg-glass: rgba(255, 255, 255, 0.03);
     
-    /* Text Colors */
-    --text-primary: #e6edf3;
-    --text-secondary: rgba(230, 237, 243, 0.7);
-    --text-muted: rgba(230, 237, 243, 0.5);
+    /* Text Colors - Softer whites */
+    --text-primary: #f1f5f9;
+    --text-secondary: rgba(241, 245, 249, 0.75);
+    --text-muted: rgba(241, 245, 249, 0.5);
     
-    /* Realistic Space Accent Colors */
-    --accent-primary: #58a6ff;
-    --accent-secondary: #1f6feb;
-    --accent-tertiary: #388bfd;
-    --accent-cyan: #56d4dd;
-    --accent-teal: #39d98a;
-    --accent-orange: #f78166;
-    --accent-gold: #e3b341;
-    --accent-red: #f85149;
+    /* Accent Colors - Harmonious Blue-Cyan palette */
+    --accent-primary: #38bdf8;
+    --accent-secondary: #0ea5e9;
+    --accent-tertiary: #7dd3fc;
+    --accent-cyan: #22d3ee;
+    --accent-teal: #2dd4bf;
+    --accent-green: #22c55e;
+    --accent-orange: #fb923c;
+    --accent-gold: #fbbf24;
+    --accent-red: #f87171;
+    --accent-purple: #a78bfa;
     --star-white: #ffffff;
-    --star-blue: #aad4ff;
-    --star-yellow: #fff4d6;
-    --star-orange: #ffcba4;
+    --star-blue: #bfdbfe;
+    --star-yellow: #fef3c7;
+    --star-orange: #fed7aa;
     
-    /* Nebula Colors (subtle, realistic) */
-    --nebula-blue: #1a3a5c;
-    --nebula-teal: #0d4a4a;
-    --nebula-deep: #0c1929;
-    --nebula-warm: #2a1a0a;
+    /* Nebula Colors - Soft, atmospheric */
+    --nebula-blue: rgba(56, 189, 248, 0.08);
+    --nebula-teal: rgba(45, 212, 191, 0.06);
+    --nebula-deep: rgba(15, 23, 42, 0.9);
+    --nebula-warm: rgba(251, 146, 60, 0.05);
     
-    /* Realistic Space Gradients */
-    --gradient-primary: linear-gradient(135deg, #1f6feb 0%, #58a6ff 50%, #79c0ff 100%);
-    --gradient-secondary: linear-gradient(135deg, #56d4dd 0%, #1f6feb 100%);
-    --gradient-glow: linear-gradient(135deg, rgba(88, 166, 255, 0.4) 0%, rgba(31, 111, 235, 0.4) 100%);
-    --gradient-card: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
-    --gradient-nebula: radial-gradient(ellipse at center, rgba(31, 111, 235, 0.1) 0%, transparent 70%);
-    --gradient-galaxy: linear-gradient(180deg, #000000 0%, #0a0e14 25%, #0d1117 50%, #0a0e14 75%, #000000 100%);
+    /* Gradients - Smooth, modern */
+    --gradient-primary: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 50%, #7dd3fc 100%);
+    --gradient-secondary: linear-gradient(135deg, #22d3ee 0%, #0ea5e9 100%);
+    --gradient-glow: linear-gradient(135deg, rgba(56, 189, 248, 0.3) 0%, rgba(14, 165, 233, 0.3) 100%);
+    --gradient-card: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 100%);
+    --gradient-nebula: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
+    --gradient-galaxy: linear-gradient(180deg, #030712 0%, #0f172a 50%, #030712 100%);
+    --gradient-text: linear-gradient(135deg, #38bdf8 0%, #22d3ee 50%, #2dd4bf 100%);
     
-    /* Realistic Space Shadows & Glows */
-    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.7);
-    --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.8);
-    --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
-    --shadow-glow: 0 0 40px rgba(88, 166, 255, 0.3);
-    --shadow-glow-lg: 0 0 80px rgba(88, 166, 255, 0.4);
-    --shadow-star: 0 0 10px rgba(255, 255, 255, 0.9);
+    /* Shadows & Glows - Softer */
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    --shadow-glow: 0 0 40px rgba(56, 189, 248, 0.2);
+    --shadow-glow-lg: 0 0 80px rgba(56, 189, 248, 0.25);
+    --shadow-star: 0 0 10px rgba(255, 255, 255, 0.8);
     
     /* Spacing */
     --spacing-xs: 0.5rem;
@@ -103,7 +106,7 @@ body {
     position: relative;
 }
 
-/* Realistic Space Background Overlay */
+/* Cosmic Background Overlay - Eye Pleasing */
 body::before {
     content: '';
     position: fixed;
@@ -112,10 +115,10 @@ body::before {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(ellipse at 55% 35%, rgba(30, 64, 120, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 45% 45%, rgba(20, 50, 100, 0.12) 0%, transparent 45%),
-        radial-gradient(ellipse at 60% 40%, rgba(40, 80, 140, 0.08) 0%, transparent 40%),
-        radial-gradient(ellipse at 50% 70%, rgba(8, 20, 40, 0.2) 0%, transparent 60%);
+        radial-gradient(ellipse at 50% 30%, rgba(56, 189, 248, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 60%, rgba(34, 211, 238, 0.04) 0%, transparent 45%),
+        radial-gradient(ellipse at 30% 70%, rgba(45, 212, 191, 0.03) 0%, transparent 40%),
+        radial-gradient(ellipse at 50% 100%, rgba(15, 23, 42, 0.8) 0%, transparent 50%);
     pointer-events: none;
     z-index: 0;
 }
@@ -312,7 +315,7 @@ body::before {
 .orb-1 {
     width: 900px;
     height: 900px;
-    background: radial-gradient(circle, rgba(30, 80, 160, 0.25) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
     top: -350px;
     right: -350px;
     animation-delay: 0s;
@@ -321,7 +324,7 @@ body::before {
 .orb-2 {
     width: 800px;
     height: 800px;
-    background: radial-gradient(circle, rgba(20, 60, 120, 0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.1) 0%, transparent 70%);
     bottom: -300px;
     left: -300px;
     animation-delay: -10s;
@@ -330,21 +333,21 @@ body::before {
 .orb-3 {
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(50, 100, 180, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(45, 212, 191, 0.08) 0%, transparent 70%);
     top: 35%;
     left: 25%;
     animation-delay: -20s;
-    opacity: 0.2;
+    opacity: 0.25;
 }
 
 .orb-4 {
     width: 700px;
     height: 700px;
-    background: radial-gradient(circle, rgba(40, 90, 160, 0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.06) 0%, transparent 70%);
     top: 55%;
     right: 5%;
     animation-delay: -15s;
-    opacity: 0.15;
+    opacity: 0.2;
 }
 
 @keyframes nebula-float {
@@ -591,12 +594,25 @@ nav.scrolled {
 }
 
 .status-dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     background: var(--accent-green);
     border-radius: 50%;
-    animation: pulse 2s ease-in-out infinite;
-    box-shadow: 0 0 10px var(--accent-green);
+    animation: pulse-green 2s ease-in-out infinite;
+    box-shadow: 0 0 12px var(--accent-green), 0 0 4px var(--accent-green);
+}
+
+@keyframes pulse-green {
+    0%, 100% { 
+        opacity: 1; 
+        transform: scale(1);
+        box-shadow: 0 0 12px var(--accent-green), 0 0 4px var(--accent-green);
+    }
+    50% { 
+        opacity: 0.7; 
+        transform: scale(1.1);
+        box-shadow: 0 0 20px var(--accent-green), 0 0 8px var(--accent-green);
+    }
 }
 
 .hero-title {
@@ -884,7 +900,7 @@ nav.scrolled {
     gap: 8px;
     text-decoration: none;
     color: var(--text-muted);
-    transition: var(--transition-base);
+    transition: opacity 0.5s ease, transform 0.5s ease, color 0.3s ease;
     animation: fadeIn 1s ease 1s forwards;
     opacity: 0;
 }
@@ -917,6 +933,13 @@ nav.scrolled {
 
 .scroll-indicator:hover {
     color: var(--accent-primary);
+}
+
+.scroll-indicator.hidden {
+    opacity: 0 !important;
+    transform: translateX(-50%) translateY(30px) !important;
+    pointer-events: none !important;
+    visibility: hidden;
 }
 
 /* ============================================
@@ -1234,8 +1257,13 @@ nav.scrolled {
 }
 
 .achievement-icon {
-    font-size: 1.1rem;
+    width: 6px;
+    height: 6px;
+    min-width: 6px;
+    background: var(--accent-primary);
+    border-radius: 50%;
     flex-shrink: 0;
+    margin-top: 8px;
 }
 
 .tech-stack {
@@ -1528,8 +1556,13 @@ nav.scrolled {
 }
 
 .feature-icon {
-    font-size: 1rem;
+    width: 6px;
+    height: 6px;
+    min-width: 6px;
+    background: var(--accent-primary);
+    border-radius: 50%;
     flex-shrink: 0;
+    margin-top: 6px;
 }
 
 .project-tech {

@@ -55,34 +55,39 @@ const initThreeJS = () => {
         milkyWayVelocities[i3 + 1] = 0;
         milkyWayVelocities[i3 + 2] = 0;
 
-        // Color based on position in band
+        // Color based on position in band - Cyan/Teal palette
         const distFromCenter = Math.abs(gaussianSpread);
-        const brightness = 0.3 + Math.random() * 0.7;
+        const brightness = 0.35 + Math.random() * 0.65;
         
-        // Core is brighter, blue-white
+        // Core is brighter, cyan-white
         if (distFromCenter < 0.15) {
-            // Bright core - white/blue-white
-            milkyWayColors[i3] = (0.9 + Math.random() * 0.1) * brightness;
-            milkyWayColors[i3 + 1] = (0.92 + Math.random() * 0.08) * brightness;
-            milkyWayColors[i3 + 2] = (0.95 + Math.random() * 0.05) * brightness;
-        } else if (distFromCenter < 0.3) {
-            // Inner region - subtle blue tint
+            // Bright core - white with subtle cyan
             milkyWayColors[i3] = (0.85 + Math.random() * 0.15) * brightness;
-            milkyWayColors[i3 + 1] = (0.88 + Math.random() * 0.12) * brightness;
+            milkyWayColors[i3 + 1] = (0.95 + Math.random() * 0.05) * brightness;
+            milkyWayColors[i3 + 2] = (0.98 + Math.random() * 0.02) * brightness;
+        } else if (distFromCenter < 0.3) {
+            // Inner region - cyan tint
+            milkyWayColors[i3] = (0.75 + Math.random() * 0.15) * brightness;
+            milkyWayColors[i3 + 1] = (0.9 + Math.random() * 0.1) * brightness;
             milkyWayColors[i3 + 2] = (0.95 + Math.random() * 0.05) * brightness;
         } else {
-            // Outer edges - more varied
+            // Outer edges - varied cyan/teal/white
             const colorType = Math.random();
-            if (colorType > 0.85) {
-                // Orange/warm stars (like in the reference)
+            if (colorType > 0.9) {
+                // Teal stars
+                milkyWayColors[i3] = (0.6 + Math.random() * 0.2) * brightness;
+                milkyWayColors[i3 + 1] = (0.9 + Math.random() * 0.1) * brightness;
+                milkyWayColors[i3 + 2] = (0.85 + Math.random() * 0.15) * brightness;
+            } else if (colorType > 0.8) {
+                // Warm accent stars (subtle)
                 milkyWayColors[i3] = (0.95 + Math.random() * 0.05) * brightness;
-                milkyWayColors[i3 + 1] = (0.75 + Math.random() * 0.15) * brightness;
-                milkyWayColors[i3 + 2] = (0.5 + Math.random() * 0.2) * brightness;
+                milkyWayColors[i3 + 1] = (0.85 + Math.random() * 0.1) * brightness;
+                milkyWayColors[i3 + 2] = (0.7 + Math.random() * 0.15) * brightness;
             } else {
-                // White/blue stars
+                // White/light cyan stars
                 milkyWayColors[i3] = (0.85 + Math.random() * 0.15) * brightness;
-                milkyWayColors[i3 + 1] = (0.88 + Math.random() * 0.12) * brightness;
-                milkyWayColors[i3 + 2] = (0.92 + Math.random() * 0.08) * brightness;
+                milkyWayColors[i3 + 1] = (0.92 + Math.random() * 0.08) * brightness;
+                milkyWayColors[i3 + 2] = (0.95 + Math.random() * 0.05) * brightness;
             }
         }
     }
@@ -118,11 +123,11 @@ const initThreeJS = () => {
         glowPositions[i3 + 1] = t * 10 + gaussianSpread * 5 + 5;
         glowPositions[i3 + 2] = -8 - Math.random() * 10;
 
-        // Soft blue-white glow
+        // Soft cyan-teal glow
         const brightness = 0.15 + Math.random() * 0.25;
-        glowColors[i3] = 0.6 * brightness;
-        glowColors[i3 + 1] = 0.7 * brightness;
-        glowColors[i3 + 2] = 1.0 * brightness;
+        glowColors[i3] = 0.5 * brightness;
+        glowColors[i3 + 1] = 0.85 * brightness;
+        glowColors[i3 + 2] = 0.95 * brightness;
     }
 
     glowGeometry.setAttribute('position', new THREE.BufferAttribute(glowPositions, 3));
@@ -171,30 +176,30 @@ const initThreeJS = () => {
         fieldStarVelocities[i3 + 1] = 0;
         fieldStarVelocities[i3 + 2] = 0;
 
-        // Natural star color variation
-        const brightness = 0.3 + Math.random() * 0.7;
+        // Harmonious star color variation - cyan/teal palette
+        const brightness = 0.35 + Math.random() * 0.65;
         const colorRand = Math.random();
         
         if (colorRand > 0.92) {
-            // Blue-white hot stars
-            fieldStarColors[i3] = 0.8 * brightness;
-            fieldStarColors[i3 + 1] = 0.9 * brightness;
+            // Cyan stars
+            fieldStarColors[i3] = 0.7 * brightness;
+            fieldStarColors[i3 + 1] = 0.95 * brightness;
             fieldStarColors[i3 + 2] = 1.0 * brightness;
         } else if (colorRand > 0.85) {
-            // Yellow stars
-            fieldStarColors[i3] = 1.0 * brightness;
-            fieldStarColors[i3 + 1] = 0.95 * brightness;
-            fieldStarColors[i3 + 2] = 0.8 * brightness;
+            // Teal stars
+            fieldStarColors[i3] = 0.6 * brightness;
+            fieldStarColors[i3 + 1] = 0.92 * brightness;
+            fieldStarColors[i3 + 2] = 0.88 * brightness;
         } else if (colorRand > 0.80) {
-            // Orange-ish stars
+            // Warm accent stars
             fieldStarColors[i3] = 1.0 * brightness;
-            fieldStarColors[i3 + 1] = 0.8 * brightness;
-            fieldStarColors[i3 + 2] = 0.6 * brightness;
+            fieldStarColors[i3 + 1] = 0.9 * brightness;
+            fieldStarColors[i3 + 2] = 0.75 * brightness;
         } else {
-            // White stars (most common)
-            fieldStarColors[i3] = brightness;
-            fieldStarColors[i3 + 1] = brightness;
-            fieldStarColors[i3 + 2] = brightness + 0.05;
+            // White/light cyan stars (most common)
+            fieldStarColors[i3] = (0.88 + Math.random() * 0.12) * brightness;
+            fieldStarColors[i3 + 1] = (0.94 + Math.random() * 0.06) * brightness;
+            fieldStarColors[i3 + 2] = (0.96 + Math.random() * 0.04) * brightness;
         }
     }
 
@@ -229,12 +234,20 @@ const initThreeJS = () => {
         
         brightPhases[i] = Math.random() * Math.PI * 2;
 
-        // Bright stars - mostly white with some blue
-        if (Math.random() > 0.7) {
-            brightColors[i3] = 0.85;
-            brightColors[i3 + 1] = 0.9;
+        // Bright stars - white with cyan/teal accents
+        const starType = Math.random();
+        if (starType > 0.8) {
+            // Cyan bright stars
+            brightColors[i3] = 0.75;
+            brightColors[i3 + 1] = 0.95;
             brightColors[i3 + 2] = 1.0;
+        } else if (starType > 0.6) {
+            // Teal bright stars
+            brightColors[i3] = 0.7;
+            brightColors[i3 + 1] = 0.92;
+            brightColors[i3 + 2] = 0.9;
         } else {
+            // Pure white stars
             brightColors[i3] = 1.0;
             brightColors[i3 + 1] = 1.0;
             brightColors[i3 + 2] = 1.0;
@@ -497,9 +510,8 @@ const initMobileMenu = () => {
 
 const initNavScroll = () => {
     const navbar = document.getElementById('navbar');
+    const scrollIndicator = document.querySelector('.scroll-indicator');
     if (!navbar) return;
-
-    let lastScroll = 0;
 
     window.addEventListener('scroll', () => {
         const currentScroll = window.scrollY;
@@ -510,7 +522,14 @@ const initNavScroll = () => {
             navbar.classList.remove('scrolled');
         }
 
-        lastScroll = currentScroll;
+        // Hide scroll indicator when user starts scrolling
+        if (scrollIndicator) {
+            if (currentScroll > 10) {
+                scrollIndicator.classList.add('hidden');
+            } else {
+                scrollIndicator.classList.remove('hidden');
+            }
+        }
     }, { passive: true });
 };
 
