@@ -5,163 +5,558 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Auroshish Kumar Meher - Senior Software Engineer specializing in DevOps, Backend Development, and Cloud Technologies">
-    <meta name="keywords" content="Software Engineer, DevOps, Kubernetes, Docker, Spring Boot, Full Stack Developer">
+        content="Auroshish Kumar Meher - Senior Software Engineer with 2.5+ years specializing in Backend Development, Cloud-Native Microservices, and DevOps">
+    <meta name="keywords" content="Software Engineer, DevOps, Kubernetes, Docker, Spring Boot, Full Stack Developer, Java, Python">
     <meta name="author" content="Auroshish Kumar Meher">
-    <meta name="theme-color" content="#0d1117">
+    <meta name="theme-color" content="#0a0a0f">
     <title>Auroshish Kumar Meher | Senior Software Engineer</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Three.js for 3D animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 
 <body>
-    <!-- Matrix Rain Canvas -->
-    <canvas id="matrix-canvas"></canvas>
+    <!-- 3D Canvas Background -->
+    <canvas id="bg-canvas"></canvas>
+    
+    <!-- Static Stars Layer -->
+    <div class="stars-layer"></div>
+    
+    <!-- Milky Way Band -->
+    <div class="milky-way"></div>
+    
+    <!-- Shooting Stars -->
+    <div class="shooting-stars">
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+    </div>
+    
+    <!-- Gradient Orbs - Nebulae -->
+    <div class="gradient-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+    </div>
 
     <!-- Custom Cursor -->
-    <div class="cursor"></div>
+    <div class="cursor-glow"></div>
     <div class="cursor-dot"></div>
 
     <!-- Navigation -->
     <nav id="navbar">
-        <div class="container">
-            <div class="logo">AKM</div>
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <span class="logo-text">AKM</span>
+                <span class="logo-dot"></span>
+            </a>
 
             <!-- Hamburger Menu -->
-            <div class="hamburger" id="hamburger">
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
 
             <ul class="nav-links" id="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="container">
+        <div class="hero-container">
             <div class="hero-content">
-                <p class="terminal-prefix">whoami</p>
-                <h1 data-text="Auroshish Kumar Meher">Auroshish Kumar Meher</h1>
-                <p class="subtitle">Senior Software Engineer<span class="typing-cursor"></span></p>
-                <p class="code-comment">Backend Engineer with 2.5+ years of experience</p>
-                <p class="tagline">
-                    Specializing in cloud-native microservices, API development, and performance optimization.
-                    Passionate about building scalable systems and solving complex problems.
+                <div class="hero-badge">
+                    <span class="status-dot"></span>
+                    <span>Available for opportunities</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    <span class="greeting">Hi, I'm</span>
+                    <span class="name-wrapper">
+                        <span class="name" data-text="Auroshish Kumar Meher">Auroshish Kumar Meher</span>
+                    </span>
+                </h1>
+                
+                <div class="hero-role">
+                    <span class="role-text">Senior Software Engineer</span>
+                    <span class="role-separator">•</span>
+                    <span class="role-highlight">Backend & Microservices</span>
+                </div>
+                
+                <p class="hero-description">
+                    I'm the kind of engineer who gets excited about making systems faster and more reliable. 
+                    Give me a <span class="highlight">complex backend problem</span>, and I'll turn it into a 
+                    <span class="highlight">clean, scalable solution</span>. Over the past <span class="highlight">2+ years</span>, 
+                    I've been doing exactly that—building microservices that actually work at scale.
                 </p>
-                <div class="cta-buttons">
-                    <a href="https://drive.google.com/file/d/1VGER2C8TQKqBY7euNFaV-YiUGl9VeLZj/view?usp=drive_link"
-                        target="_blank" class="btn btn-primary">
-                        <span>./view_resume.sh</span>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="2">0</span><span class="stat-suffix">+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="300">0</span><span class="stat-suffix">+</span>
+                        <span class="stat-label">DSA Problems</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="95">0</span><span class="stat-suffix">%</span>
+                        <span class="stat-label">Test Coverage</span>
+                    </div>
+                </div>
+                
+                <div class="hero-cta">
+                    <a href="https://drive.google.com/file/d/1VGER2C8TQKqBY7euNFaV-YiUGl9VeLZj/view?usp=drive_link" 
+                       target="_blank" class="btn btn-primary">
+                        <span class="btn-content">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                            </svg>
+                            View Resume
+                        </span>
+                        <span class="btn-glow"></span>
                     </a>
                     <a href="#contact" class="btn btn-secondary">
-                        <span>./contact.sh</span>
+                        <span class="btn-content">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            Let's Talk
+                        </span>
                     </a>
                 </div>
             </div>
+
+            <div class="hero-visual">
+                <div class="hero-3d-card">
+                    <div class="card-inner">
+                        <div class="code-window">
+                            <div class="window-header">
+                                <div class="window-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <span class="window-title">developer.java</span>
+                            </div>
+                            <pre class="code-content"><code><span class="code-keyword">public class</span> <span class="code-class">Developer</span> {
+    <span class="code-keyword">private</span> String name = <span class="code-string">"Auroshish"</span>;
+    <span class="code-keyword">private</span> String role = <span class="code-string">"Sr. Engineer"</span>;
+    <span class="code-keyword">private</span> String[] skills = {
+        <span class="code-string">"Java"</span>, <span class="code-string">"Spring Boot"</span>,
+        <span class="code-string">"Python"</span>, <span class="code-string">"Microservices"</span>
+    };
+    
+    <span class="code-keyword">public void</span> <span class="code-method">buildScalableSystems</span>() {
+        <span class="code-comment">// Let's architect magic! ✨</span>
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <a href="#about" class="scroll-indicator">
+            <span class="scroll-text">Scroll to explore</span>
+            <div class="scroll-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+                </svg>
+            </div>
+        </a>
     </section>
 
     <!-- About Section -->
-    <section id="about">
+    <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title"><span>About Me</span></h2>
-            <div class="about-content reveal">
-                <p>
-                    Hello! I'm Auroshish Kumar Meher, a <strong>Senior Software Engineer</strong> dedicated to crafting
-                    robust backend solutions and scalable architectures. I specialize in building high-performance
-                    microservices, optimizing database interactions, and developing efficient APIs that drive seamless
-                    user experiences.
-                </p>
-                <p>
-                    My technical expertise spans <strong>Java, Spring Boot, Python,</strong> and a comprehensive suite
-                    of cloud-native technologies. I take pride in architecting cloud-native microservices, writing
-                    clean,
-                    maintainable code, and implementing DevOps best practices. My focus is always on reliability,
-                    scalability, and performance—whether I'm orchestrating Kubernetes clusters, streamlining CI/CD
-                    pipelines, or implementing advanced caching strategies with Redis.
-                </p>
-                <p>
-                    Beyond technical implementation, I am deeply committed to continuous learning and algorithmic
-                    problem-solving, having solved many DSA problems. I enjoy turning complex requirements into
-                    elegant technical solutions and staying at the forefront of industry trends. From GraphQL and Docker
-                    to emerging technologies, I am constantly expanding my skillset to deliver exceptional software
-                    engineering results.
-                </p>
+            <div class="section-header">
+                <span class="section-tag">Get to know me</span>
+                <h2 class="section-title">About Me</h2>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-content reveal-left">
+                    <div class="about-text">
+                        <p class="about-intro">
+                            Hey there! I'm a <span class="text-gradient">backend engineer</span> who genuinely enjoys 
+                            the puzzle of building systems that can handle real-world scale.
+                        </p>
+                        <p>
+                            Right now, I'm at <strong>Subex Limited (AI Labs)</strong> where I spend my days designing 
+                            microservices and APIs that power enterprise applications. Some of my proudest moments? 
+                            Cutting API response times by <strong>50%</strong> and hitting <strong>95% test coverage</strong> 
+                            on critical services—because shipping fast shouldn't mean shipping broken.
+                        </p>
+                        <p>
+                            My toolkit includes <strong>Java, Spring Boot, Python, and FastAPI</strong>—but I'm always 
+                            picking up new things. Lately, I've been diving deep into <strong>LLM-powered applications</strong>, 
+                            fine-tuning performance with <strong>Redis caching</strong>, and helping teams migrate to 
+                            <strong>GraphQL</strong> for cleaner data fetching.
+                        </p>
+                        <p>
+                            When I'm not coding, you'll probably find me grinding through DSA problems (I've solved 
+                            <strong>300+ on LeetCode and GFG</strong>). Oh, and I got the <strong>Agile Surfer award</strong> 
+                            at work for consistently delivering features on time—turns out showing up matters!
+                        </p>
+                    </div>
+                    
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <polyline points="22 4 12 14.01 9 11.01"/>
+                                </svg>
+                            </div>
+                            <span>Clean, maintainable code</span>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <polyline points="22 4 12 14.01 9 11.01"/>
+                                </svg>
+                            </div>
+                            <span>Scalable microservices</span>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <polyline points="22 4 12 14.01 9 11.01"/>
+                                </svg>
+                            </div>
+                            <span>High-performance APIs</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-visual reveal-right">
+                    <div class="tech-cube">
+                        <div class="cube-face cube-front">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
+                        </div>
+                        <div class="cube-face cube-back">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                        </div>
+                        <div class="cube-face cube-right">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring">
+                        </div>
+                        <div class="cube-face cube-left">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI">
+                        </div>
+                        <div class="cube-face cube-top">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" alt="GraphQL">
+                        </div>
+                        <div class="cube-face cube-bottom">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills">
+    <!-- Experience Section -->
+    <section id="experience" class="section">
         <div class="container">
-            <h2 class="section-title"><span>Skills & Expertise</span></h2>
-            <div class="skills-container">
-                <div class="skill-category reveal">
-                    <h3>DevOps Tools</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Kubernetes</span>
-                        <span class="skill-tag">Helm</span>
-                        <span class="skill-tag">Jenkins</span>
-                        <span class="skill-tag">ArgoCD</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">GitLab</span>
+            <div class="section-header">
+                <span class="section-tag">My Journey</span>
+                <h2 class="section-title">Experience</h2>
+            </div>
+            
+            <div class="timeline">
+                <!-- Senior Software Engineer Role -->
+                <div class="timeline-item reveal-up">
+                    <div class="timeline-marker">
+                        <div class="marker-dot"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="company-info">
+                                <h3 class="company-name">Subex Limited (AI Labs)</h3>
+                                <span class="job-title">Senior Software Engineer</span>
+                            </div>
+                            <div class="timeline-meta">
+                                <span class="duration">Oct 2024 - Present</span>
+                                <span class="location">📍 Bengaluru, India</span>
+                            </div>
+                        </div>
+                        <ul class="timeline-achievements">
+                            <li>
+                                <span class="achievement-icon">🤖</span>
+                                <span>Developed LLM-powered <strong>Text-to-SQL chatbot</strong> achieving <strong>95% accuracy</strong>, reducing manual query effort by <strong>80%</strong></span>
+                            </li>
+                            <li>
+                                <span class="achievement-icon">⚡</span>
+                                <span>Implemented <strong>Redis + Hibernate caching</strong> strategy reducing API response time by <strong>23%</strong></span>
+                            </li>
+                            <li>
+                                <span class="achievement-icon">🔄</span>
+                                <span>Migrated REST APIs to <strong>GraphQL</strong>, improving response times by <strong>50%</strong> for complex data queries</span>
+                            </li>
+                            <li>
+                                <span class="achievement-icon">📈</span>
+                                <span>Built Kubernetes resource manager reducing pipeline execution time by <strong>50%</strong>, scaling to <strong>200+ concurrent workflows</strong></span>
+                            </li>
+                            <li>
+                                <span class="achievement-icon">🚀</span>
+                                <span>Architected Python APIs for Spark job scheduling via Airflow, reducing manual effort by <strong>40%</strong></span>
+                            </li>
+                        </ul>
+                        <div class="tech-stack">
+                            <span class="tech-pill">Java</span>
+                            <span class="tech-pill">Spring Boot</span>
+                            <span class="tech-pill">Python</span>
+                            <span class="tech-pill">FastAPI</span>
+                            <span class="tech-pill">GraphQL</span>
+                            <span class="tech-pill">Redis</span>
+                            <span class="tech-pill">LLM/AI</span>
+                            <span class="tech-pill">Apache Spark</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="skill-category reveal">
-                    <h3>Languages</h3>
+                <!-- Software Engineer Role -->
+                <div class="timeline-item reveal-up">
+                    <div class="timeline-marker">
+                        <div class="marker-dot"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="company-info">
+                                <h3 class="company-name">Subex Limited (AI Labs)</h3>
+                                <span class="job-title">Software Engineer</span>
+                            </div>
+                            <div class="timeline-meta">
+                                <span class="duration">Jul 2023 - Oct 2024</span>
+                                <span class="location">📍 Bengaluru, India</span>
+                            </div>
+                        </div>
+                        <ul class="timeline-achievements">
+                            <li>
+                                <span class="achievement-icon">🏗️</span>
+                                <span>Built <strong>Amazon S3 + Athena</strong> backend architecture reducing data retrieval latency by <strong>45%</strong></span>
+                            </li>
+                            <li>
+                                <span class="achievement-icon">🔧</span>
+                                <span>Upgraded Spring Boot from Java 8 to 21, resolving <strong>34 CVEs</strong> and boosting throughput by <strong>25%</strong></span>
+                            </li>
+                            <li>
+                                <span class="achievement-icon">🛡️</span>
+                                <span>Implemented <strong>OAuth2, RBAC, JWT</strong> authentication reducing unauthorized access incidents by <strong>25%</strong></span>
+                            </li>
+                            <li>
+                                <span class="achievement-icon">✅</span>
+                                <span>Wrote <strong>150+ JUnit/Mockito</strong> test cases achieving <strong>95% code coverage</strong> and <strong>40% bug reduction</strong></span>
+                            </li>
+                            <li>
+                                <span class="achievement-icon">📊</span>
+                                <span>Developed RESTful API monitoring tools improving operational efficiency by <strong>40%</strong></span>
+                            </li>
+                        </ul>
+                        <div class="tech-stack">
+                            <span class="tech-pill">Java 21</span>
+                            <span class="tech-pill">Spring Boot</span>
+                            <span class="tech-pill">AWS S3</span>
+                            <span class="tech-pill">Athena</span>
+                            <span class="tech-pill">OAuth2</span>
+                            <span class="tech-pill">JUnit</span>
+                            <span class="tech-pill">Mockito</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Academic Background</span>
+                <h2 class="section-title">Education</h2>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item reveal-up">
+                    <div class="timeline-marker">
+                        <div class="marker-dot"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="company-info">
+                                <h3 class="company-name">IIIT Bhubaneswar</h3>
+                                <span class="job-title">B.Tech in Computer Engineering</span>
+                            </div>
+                            <div class="timeline-meta">
+                                <span class="duration">Aug 2019 - Jul 2023</span>
+                                <span class="location">📍 Bhubaneswar, Odisha</span>
+                            </div>
+                        </div>
+                        <ul class="timeline-achievements">
+                            <li>
+                                <span class="achievement-icon">🎓</span>
+                                <span>Graduated with <strong>8.15 CGPA</strong> in Computer Engineering</span>
+                            </li>
+                            <li>
+                                <span class="achievement-icon">💡</span>
+                                <span>Active problem solver with <strong>300+ DSA problems</strong> solved on GeeksforGeeks & LeetCode</span>
+                            </li>
+                            <li>
+                                <span class="achievement-icon">📚</span>
+                                <span>Coursework: Data Structures, Algorithms, DBMS, Operating Systems, Computer Networks</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">What I work with</span>
+                <h2 class="section-title">Skills & Expertise</h2>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-card reveal-up" data-tilt>
+                    <div class="skill-icon-wrapper">
+                        <div class="skill-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <polyline points="16 18 22 12 16 6"/>
+                                <polyline points="8 6 2 12 8 18"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="skill-title">Languages</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">C/C++</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">HTML</span>
-                        <span class="skill-tag">CSS</span>
-                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag" data-level="expert">Java</span>
+                        <span class="skill-tag" data-level="expert">Python</span>
+                        <span class="skill-tag" data-level="advanced">JavaScript</span>
+                        <span class="skill-tag" data-level="advanced">C/C++</span>
+                        <span class="skill-tag" data-level="advanced">SQL</span>
+                        <span class="skill-tag" data-level="intermediate">TypeScript</span>
                     </div>
                 </div>
 
-                <div class="skill-category reveal">
-                    <h3>Frameworks</h3>
+                <div class="skill-card reveal-up" data-tilt style="--delay: 0.1s">
+                    <div class="skill-icon-wrapper">
+                        <div class="skill-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                <line x1="12" y1="17" x2="12" y2="21"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="skill-title">Frameworks</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">Spring/Spring Boot</span>
-                        <span class="skill-tag">Hibernate</span>
-                        <span class="skill-tag">FastAPI</span>
-                        <span class="skill-tag">J2EE</span>
+                        <span class="skill-tag" data-level="expert">Spring Boot</span>
+                        <span class="skill-tag" data-level="expert">Hibernate</span>
+                        <span class="skill-tag" data-level="advanced">FastAPI</span>
+                        <span class="skill-tag" data-level="advanced">React.js</span>
+                        <span class="skill-tag" data-level="intermediate">J2EE</span>
                     </div>
                 </div>
 
-                <div class="skill-category reveal">
-                    <h3>Databases</h3>
+                <div class="skill-card reveal-up" data-tilt style="--delay: 0.2s">
+                    <div class="skill-icon-wrapper">
+                        <div class="skill-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M22.61 16.95A5 5 0 0 0 18 10h-1.26a8 8 0 1 0-7.05 11"/>
+                                <polyline points="22 14 18 14 18 18"/>
+                                <line x1="18" y1="14" x2="14" y2="18"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="skill-title">Cloud & Tools</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">CassandraDB</span>
-                        <span class="skill-tag">ClickhouseDB</span>
+                        <span class="skill-tag" data-level="advanced">AWS S3</span>
+                        <span class="skill-tag" data-level="advanced">AWS Athena</span>
+                        <span class="skill-tag" data-level="advanced">Docker</span>
+                        <span class="skill-tag" data-level="advanced">Apache Airflow</span>
+                        <span class="skill-tag" data-level="advanced">Apache Spark</span>
+                        <span class="skill-tag" data-level="advanced">Git</span>
                     </div>
                 </div>
 
-                <div class="skill-category reveal">
-                    <h3>Soft Skills</h3>
+                <div class="skill-card reveal-up" data-tilt style="--delay: 0.3s">
+                    <div class="skill-icon-wrapper">
+                        <div class="skill-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="skill-title">Databases</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">Agile Methodologies</span>
-                        <span class="skill-tag">Teamwork</span>
+                        <span class="skill-tag" data-level="expert">PostgreSQL</span>
+                        <span class="skill-tag" data-level="expert">MySQL</span>
+                        <span class="skill-tag" data-level="advanced">MongoDB</span>
+                        <span class="skill-tag" data-level="advanced">Redis</span>
+                        <span class="skill-tag" data-level="intermediate">CassandraDB</span>
+                        <span class="skill-tag" data-level="intermediate">ClickhouseDB</span>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal-up" data-tilt style="--delay: 0.4s">
+                    <div class="skill-icon-wrapper">
+                        <div class="skill-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                                <polyline points="2 17 12 22 22 17"/>
+                                <polyline points="2 12 12 17 22 12"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="skill-title">Architecture</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag" data-level="expert">Microservices</span>
+                        <span class="skill-tag" data-level="advanced">REST APIs</span>
+                        <span class="skill-tag" data-level="advanced">GraphQL</span>
+                        <span class="skill-tag" data-level="advanced">Event-Driven</span>
+                        <span class="skill-tag" data-level="intermediate">RAG/LLM</span>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal-up" data-tilt style="--delay: 0.5s">
+                    <div class="skill-icon-wrapper">
+                        <div class="skill-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="skill-title">Soft Skills</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Agile/Scrum</span>
+                        <span class="skill-tag">Team Leadership</span>
+                        <span class="skill-tag">Problem Solving</span>
                         <span class="skill-tag">Communication</span>
-                        <span class="skill-tag">Leadership</span>
                     </div>
                 </div>
             </div>
@@ -169,118 +564,244 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects">
+    <section id="projects" class="section">
         <div class="container">
-            <h2 class="section-title"><span>Featured Projects</span></h2>
+            <div class="section-header">
+                <span class="section-tag">My Work</span>
+                <h2 class="section-title">Featured Projects</h2>
+            </div>
+            
             <div class="projects-grid">
-                <div class="project-card reveal">
-                    <div class="project-header">
-                        <div>
-                            <h3>Memories - AI Virtual Diary (RAG)</h3>
-                            <p class="project-date">// 2024</p>
+                <!-- Memories Project -->
+                <article class="project-card featured reveal-up">
+                    <div class="project-badge">Featured</div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <span class="project-year">2024</span>
+                            <h3 class="project-title">Memories - AI Virtual Diary</h3>
+                            <p class="project-subtitle">RAG-Powered Intelligent Journaling Platform</p>
+                        </div>
+                        
+                        <p class="project-description">
+                            Architected a <strong>full-stack AI journaling platform</strong> using microservices architecture. 
+                            The system leverages <strong>Retrieval-Augmented Generation (RAG)</strong> to enable users to query 
+                            past memories using natural language, delivering intelligent, context-aware responses from historical data.
+                        </p>
+                        
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">3</span>
+                                <span class="metric-label">Microservices</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">RAG</span>
+                                <span class="metric-label">AI Integration</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">JWT</span>
+                                <span class="metric-label">Secure Auth</span>
+                            </div>
+                        </div>
+
+                        <div class="project-features">
+                            <div class="feature-item">
+                                <span class="feature-icon">🔐</span>
+                                <span>Secure JWT-based authentication service (Java Spring Boot)</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🤖</span>
+                                <span>LLM integration service (Python FastAPI) for intelligent responses</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">💬</span>
+                                <span>Natural language querying of historical diary entries</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">⚡</span>
+                                <span>Vector database for efficient semantic search</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-badge">React.js</span>
+                            <span class="tech-badge">TypeScript</span>
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">Spring Boot</span>
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">FastAPI</span>
+                            <span class="tech-badge">RAG/LLM</span>
+                            <span class="tech-badge">Tailwind CSS</span>
+                        </div>
+                        
+                        <div class="project-links">
+                            <a href="https://memories-ui-service.onrender.com/" target="_blank" class="project-link primary">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                    <polyline points="15 3 21 3 21 9"/>
+                                    <line x1="10" y1="14" x2="21" y2="3"/>
+                                </svg>
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/akmeher03/memories" target="_blank" class="project-link">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                View Code
+                            </a>
                         </div>
                     </div>
-                    <p>
-                        Architected a full-stack AI journaling platform using <strong>Microservices
-                            Architecture</strong>.
-                        The system leverages <strong>Retrieval-Augmented Generation (RAG)</strong> to allow users to
-                        query past memories
-                        using natural language. Features a secure Java Spring Boot auth service and a Python FastAPI
-                        service for
-                        LLM integration, delivering intelligent, context-aware responses from historical user data.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-badge">React.js</span>
-                        <span class="tech-badge">TypeScript</span>
-                        <span class="tech-badge">Java</span>
-                        <span class="tech-badge">Spring Boot</span>
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">FastAPI</span>
-                        <span class="tech-badge">RAG/LLM</span>
-                        <span class="tech-badge">Tailwind CSS</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://memories-ui-service.onrender.com/" target="_blank" class="project-link">
-                            <span>→ Live Demo</span>
-                        </a>
-                        <a href="https://github.com/akmeher03/memories" target="_blank" class="project-link">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                            </svg>
-                            <span>GitHub</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="project-card reveal">
-                    <div class="project-header">
-                        <div>
-                            <h3>Quiz Application</h3>
-                            <p class="project-date">// January 2023</p>
+                    <div class="project-glow"></div>
+                </article>
+
+                <!-- Quiz Application -->
+                <article class="project-card featured reveal-up" style="--delay: 0.2s">
+                    <div class="project-badge">Featured</div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <span class="project-year">Jan 2023</span>
+                            <h3 class="project-title">Quiz Application</h3>
+                            <p class="project-subtitle">Full-Stack Secure Assessment Platform</p>
+                        </div>
+                        
+                        <p class="project-description">
+                            Built a <strong>secure, full-stack quiz application</strong> with Spring Security authentication 
+                            and optimized database interactions using Hibernate. The platform features session-based quiz 
+                            management, real-time scoring, and comprehensive question administration for seamless assessments.
+                        </p>
+
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">10%</span>
+                                <span class="metric-label">Security Boost</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">20%</span>
+                                <span class="metric-label">Faster Response</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">Full</span>
+                                <span class="metric-label">Stack App</span>
+                            </div>
+                        </div>
+
+                        <div class="project-features">
+                            <div class="feature-item">
+                                <span class="feature-icon">🔐</span>
+                                <span>Spring Security with role-based access control</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">⚡</span>
+                                <span>Hibernate optimization for 20% faster database queries</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📊</span>
+                                <span>Real-time scoring with instant feedback</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🎯</span>
+                                <span>Dynamic question management with categories</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">Spring Boot</span>
+                            <span class="tech-badge">Spring Security</span>
+                            <span class="tech-badge">Hibernate</span>
+                            <span class="tech-badge">PostgreSQL</span>
+                            <span class="tech-badge">React.js</span>
+                            <span class="tech-badge">REST API</span>
+                        </div>
+                        
+                        <div class="project-links">
+                            <a href="https://github.com/akmeher03/Quiz-app" target="_blank" class="project-link primary">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                View Code
+                            </a>
                         </div>
                     </div>
-                    <p>
-                        Constructed a secure quiz app using Spring Boot and React.js, integrating JWT for user
-                        authentication to increase security by 10%. Streamlined backend queries and state management,
-                        reducing API response time by 20% and improving overall performance.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-badge">React.js</span>
-                        <span class="tech-badge">Java</span>
-                        <span class="tech-badge">Spring Boot</span>
-                        <span class="tech-badge">JWT</span>
-                        <span class="tech-badge">PostgreSQL</span>
-                        <span class="tech-badge">Docker</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/akmeher03/Quiz-app" target="_blank" class="project-link">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                            </svg>
-                            <span>→ View on GitHub</span>
-                        </a>
-                    </div>
-                </div>
+                    <div class="project-glow"></div>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact">
+    <section id="contact" class="section">
         <div class="container">
-            <h2 class="section-title"><span>Get In Touch</span></h2>
-            <div class="contact-content">
-                <p class="code-comment" style="text-align: center; margin-bottom: 2rem;">
-                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your
-                    visions.
-                </p>
+            <div class="section-header">
+                <span class="section-tag">Get in touch</span>
+                <h2 class="section-title">Let's Connect</h2>
+            </div>
+            
+            <div class="contact-wrapper">
+                <div class="contact-intro reveal-up">
+                    <p class="contact-text">
+                        I'm always excited to discuss new projects, creative ideas, or opportunities to be part of 
+                        your vision. Whether you have a question or just want to say hi, my inbox is always open!
+                    </p>
+                </div>
+                
+                <div class="contact-cards">
+                    <a href="mailto:meherak2000@gmail.com" class="contact-card reveal-up" style="--delay: 0.1s">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <div class="contact-info">
+                            <span class="contact-label">Email</span>
+                            <span class="contact-value">meherak2000@gmail.com</span>
+                        </div>
+                        <div class="contact-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                                <polyline points="12 5 19 12 12 19"/>
+                            </svg>
+                        </div>
+                    </a>
 
-                <div class="contact-info">
-                    <div class="contact-item reveal">
-                        <h3>Email</h3>
-                        <a href="mailto:meherak2000@gmail.com">meherak2000@gmail.com</a>
-                    </div>
-
-                    <div class="contact-item reveal">
-                        <h3>Phone</h3>
-                        <a href="tel:+916372084390">+91-6372084390</a>
-                    </div>
+                    <a href="tel:+916372084390" class="contact-card reveal-up" style="--delay: 0.2s">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-info">
+                            <span class="contact-label">Phone</span>
+                            <span class="contact-value">+91-6372084390</span>
+                        </div>
+                        <div class="contact-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                                <polyline points="12 5 19 12 12 19"/>
+                            </svg>
+                        </div>
+                    </a>
                 </div>
 
-                <div class="social-links">
+                <div class="social-links reveal-up" style="--delay: 0.3s">
                     <a href="https://github.com/akmeher03" target="_blank" class="social-link" title="GitHub">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                         </svg>
+                        <span>GitHub</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/auroshishkumarmeher" target="_blank" class="social-link"
-                        title="LinkedIn">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    <a href="https://www.linkedin.com/in/auroshishkumarmeher" target="_blank" class="social-link" title="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                         </svg>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="mailto:meherak2000@gmail.com" class="social-link" title="Email">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        <span>Email</span>
                     </a>
                 </div>
             </div>
@@ -288,9 +809,24 @@
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Auroshish Kumar Meher. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="footer-logo">AKM</span>
+                    <p class="footer-tagline">Building the future, one line of code at a time.</p>
+                </div>
+                <div class="footer-nav">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Auroshish Kumar Meher. Crafted with 💜</p>
+            </div>
         </div>
     </footer>
 
