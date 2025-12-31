@@ -1,10 +1,10 @@
 // ============================================
 // MODERN PORTFOLIO - JavaScript
-// Enhanced with Cosmic Galaxy Theme
+// Milky Way Night Sky Theme
 // ============================================
 
 // ============================================
-// THREE.JS COSMIC GALAXY BACKGROUND
+// THREE.JS MILKY WAY BACKGROUND
 // ============================================
 
 const initThreeJS = () => {
@@ -13,79 +13,84 @@ const initThreeJS = () => {
 
     // Scene setup
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
     
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // Create galaxy particles
-    const galaxyGeometry = new THREE.BufferGeometry();
-    const galaxyCount = 5000;
-    const posArray = new Float32Array(galaxyCount * 3);
-    const colorsArray = new Float32Array(galaxyCount * 3);
-    const sizesArray = new Float32Array(galaxyCount);
+    // ========== MILKY WAY BAND (Dense star concentration) ==========
+    const milkyWayCount = 25000;
+    const milkyWayGeometry = new THREE.BufferGeometry();
+    const milkyWayPositions = new Float32Array(milkyWayCount * 3);
+    const milkyWayColors = new Float32Array(milkyWayCount * 3);
+    const milkyWayOriginal = new Float32Array(milkyWayCount * 3);
+    const milkyWayVelocities = new Float32Array(milkyWayCount * 3);
 
-    // Realistic space color palette (NASA/Hubble-inspired)
-    const cosmicColors = [
-        { r: 0.93, g: 0.93, b: 0.98 },  // White-blue stars (hottest)
-        { r: 0.95, g: 0.87, b: 0.65 },  // Warm yellow stars
-        { r: 0.98, g: 0.65, b: 0.45 },  // Orange-red stars
-        { r: 0.55, g: 0.75, b: 0.95 },  // Light blue
-        { r: 0.08, g: 0.65, b: 0.88 },  // Deep sky blue
-        { r: 0.08, g: 0.72, b: 0.65 },  // Teal
-        { r: 0.20, g: 0.45, b: 0.70 },  // Space navy
-    ];
-
-    // Create spiral galaxy effect
-    const branches = 5;
-    const spin = 1.5;
-    const randomness = 0.4;
-    const randomnessPower = 3;
-
-    for (let i = 0; i < galaxyCount; i++) {
+    for (let i = 0; i < milkyWayCount; i++) {
         const i3 = i * 3;
         
-        // Spiral galaxy distribution
-        const radius = Math.random() * 8 + 0.5;
-        const spinAngle = radius * spin;
-        const branchAngle = ((i % branches) / branches) * Math.PI * 2;
+        // Create a band across the sky (diagonal like in photos)
+        const t = (Math.random() - 0.5) * 2; // -1 to 1 along the band
+        const bandWidth = 0.15 + Math.random() * 0.25; // Width variation
         
-        const randomX = Math.pow(Math.random(), randomnessPower) * (Math.random() < 0.5 ? 1 : -1) * randomness * radius;
-        const randomY = Math.pow(Math.random(), randomnessPower) * (Math.random() < 0.5 ? 1 : -1) * randomness * radius * 0.3;
-        const randomZ = Math.pow(Math.random(), randomnessPower) * (Math.random() < 0.5 ? 1 : -1) * randomness * radius;
+        // Gaussian-like distribution for band thickness
+        const gaussianSpread = (Math.random() + Math.random() + Math.random()) / 3 - 0.5;
         
-        posArray[i3] = Math.cos(branchAngle + spinAngle) * radius + randomX;
-        posArray[i3 + 1] = randomY;
-        posArray[i3 + 2] = Math.sin(branchAngle + spinAngle) * radius + randomZ;
+        // Position along diagonal band
+        const x = t * 35;
+        const y = t * 12 + gaussianSpread * 8 * bandWidth;
+        const z = -5 - Math.random() * 15;
+        
+        milkyWayPositions[i3] = x;
+        milkyWayPositions[i3 + 1] = y + 5; // Shift up slightly
+        milkyWayPositions[i3 + 2] = z;
+        
+        // Store originals
+        milkyWayOriginal[i3] = x;
+        milkyWayOriginal[i3 + 1] = y + 5;
+        milkyWayOriginal[i3 + 2] = z;
+        
+        milkyWayVelocities[i3] = 0;
+        milkyWayVelocities[i3 + 1] = 0;
+        milkyWayVelocities[i3 + 2] = 0;
 
-        // Color based on distance from center (more purple in center, blue/cyan at edges)
-        const colorIndex = Math.floor(Math.random() * cosmicColors.length);
-        const mixRatio = radius / 8;
+        // Color based on position in band
+        const distFromCenter = Math.abs(gaussianSpread);
+        const brightness = 0.3 + Math.random() * 0.7;
         
-        // Inner stars are more purple/white, outer are more blue/cyan
-        if (Math.random() > 0.8) {
-            // Bright white stars
-            colorsArray[i3] = 0.95;
-            colorsArray[i3 + 1] = 0.95;
-            colorsArray[i3 + 2] = 1.0;
+        // Core is brighter, blue-white
+        if (distFromCenter < 0.15) {
+            // Bright core - white/blue-white
+            milkyWayColors[i3] = (0.9 + Math.random() * 0.1) * brightness;
+            milkyWayColors[i3 + 1] = (0.92 + Math.random() * 0.08) * brightness;
+            milkyWayColors[i3 + 2] = (0.95 + Math.random() * 0.05) * brightness;
+        } else if (distFromCenter < 0.3) {
+            // Inner region - subtle blue tint
+            milkyWayColors[i3] = (0.85 + Math.random() * 0.15) * brightness;
+            milkyWayColors[i3 + 1] = (0.88 + Math.random() * 0.12) * brightness;
+            milkyWayColors[i3 + 2] = (0.95 + Math.random() * 0.05) * brightness;
         } else {
-            const color = cosmicColors[colorIndex];
-            colorsArray[i3] = color.r;
-            colorsArray[i3 + 1] = color.g;
-            colorsArray[i3 + 2] = color.b;
+            // Outer edges - more varied
+            const colorType = Math.random();
+            if (colorType > 0.85) {
+                // Orange/warm stars (like in the reference)
+                milkyWayColors[i3] = (0.95 + Math.random() * 0.05) * brightness;
+                milkyWayColors[i3 + 1] = (0.75 + Math.random() * 0.15) * brightness;
+                milkyWayColors[i3 + 2] = (0.5 + Math.random() * 0.2) * brightness;
+            } else {
+                // White/blue stars
+                milkyWayColors[i3] = (0.85 + Math.random() * 0.15) * brightness;
+                milkyWayColors[i3 + 1] = (0.88 + Math.random() * 0.12) * brightness;
+                milkyWayColors[i3 + 2] = (0.92 + Math.random() * 0.08) * brightness;
+            }
         }
-        
-        // Vary star sizes
-        sizesArray[i] = Math.random() * 0.02 + 0.005;
     }
 
-    galaxyGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    galaxyGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
-    galaxyGeometry.setAttribute('size', new THREE.BufferAttribute(sizesArray, 1));
+    milkyWayGeometry.setAttribute('position', new THREE.BufferAttribute(milkyWayPositions, 3));
+    milkyWayGeometry.setAttribute('color', new THREE.BufferAttribute(milkyWayColors, 3));
 
-    // Particle material with glow effect
-    const galaxyMaterial = new THREE.PointsMaterial({
+    const milkyWayMaterial = new THREE.PointsMaterial({
         size: 0.025,
         vertexColors: true,
         transparent: true,
@@ -94,93 +99,249 @@ const initThreeJS = () => {
         depthWrite: false,
     });
 
-    const galaxyMesh = new THREE.Points(galaxyGeometry, galaxyMaterial);
-    galaxyMesh.rotation.x = Math.PI * 0.15;
-    scene.add(galaxyMesh);
+    const milkyWayMesh = new THREE.Points(milkyWayGeometry, milkyWayMaterial);
+    scene.add(milkyWayMesh);
 
-    // Create distant stars (background)
-    const starsGeometry = new THREE.BufferGeometry();
-    const starsCount = 3000;
-    const starsPositions = new Float32Array(starsCount * 3);
-    const starsColors = new Float32Array(starsCount * 3);
+    // ========== MILKY WAY GLOW (Nebula haze) ==========
+    const glowCount = 3000;
+    const glowGeometry = new THREE.BufferGeometry();
+    const glowPositions = new Float32Array(glowCount * 3);
+    const glowColors = new Float32Array(glowCount * 3);
 
-    for (let i = 0; i < starsCount * 3; i += 3) {
-        // Distribute stars in a sphere around the scene
-        const theta = Math.random() * Math.PI * 2;
-        const phi = Math.acos(2 * Math.random() - 1);
-        const radius = 15 + Math.random() * 20;
+    for (let i = 0; i < glowCount; i++) {
+        const i3 = i * 3;
         
-        starsPositions[i] = radius * Math.sin(phi) * Math.cos(theta);
-        starsPositions[i + 1] = radius * Math.sin(phi) * Math.sin(theta);
-        starsPositions[i + 2] = radius * Math.cos(phi);
+        const t = (Math.random() - 0.5) * 2;
+        const gaussianSpread = (Math.random() + Math.random()) / 2 - 0.5;
+        
+        glowPositions[i3] = t * 30;
+        glowPositions[i3 + 1] = t * 10 + gaussianSpread * 5 + 5;
+        glowPositions[i3 + 2] = -8 - Math.random() * 10;
 
-        // Mostly white/blue stars
-        const brightness = 0.5 + Math.random() * 0.5;
-        starsColors[i] = brightness;
-        starsColors[i + 1] = brightness;
-        starsColors[i + 2] = brightness + Math.random() * 0.2;
+        // Soft blue-white glow
+        const brightness = 0.15 + Math.random() * 0.25;
+        glowColors[i3] = 0.6 * brightness;
+        glowColors[i3 + 1] = 0.7 * brightness;
+        glowColors[i3 + 2] = 1.0 * brightness;
     }
 
-    starsGeometry.setAttribute('position', new THREE.BufferAttribute(starsPositions, 3));
-    starsGeometry.setAttribute('color', new THREE.BufferAttribute(starsColors, 3));
+    glowGeometry.setAttribute('position', new THREE.BufferAttribute(glowPositions, 3));
+    glowGeometry.setAttribute('color', new THREE.BufferAttribute(glowColors, 3));
 
-    const starsMaterial = new THREE.PointsMaterial({
+    const glowMaterial = new THREE.PointsMaterial({
+        size: 0.35,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.12,
+        blending: THREE.AdditiveBlending,
+    });
+
+    const glowMesh = new THREE.Points(glowGeometry, glowMaterial);
+    scene.add(glowMesh);
+
+    // ========== SCATTERED FIELD STARS (All over the sky) ==========
+    const fieldStarCount = 8000;
+    const fieldStarGeometry = new THREE.BufferGeometry();
+    const fieldStarPositions = new Float32Array(fieldStarCount * 3);
+    const fieldStarColors = new Float32Array(fieldStarCount * 3);
+    const fieldStarOriginal = new Float32Array(fieldStarCount * 3);
+    const fieldStarVelocities = new Float32Array(fieldStarCount * 3);
+
+    for (let i = 0; i < fieldStarCount; i++) {
+        const i3 = i * 3;
+        
+        // Spread across entire sky hemisphere
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.random() * Math.PI * 0.6; // Upper hemisphere
+        const radius = 20 + Math.random() * 25;
+        
+        const x = radius * Math.sin(phi) * Math.cos(theta);
+        const y = radius * Math.cos(phi) * 0.6 + Math.random() * 10 - 3;
+        const z = radius * Math.sin(phi) * Math.sin(theta) - 15;
+        
+        fieldStarPositions[i3] = x;
+        fieldStarPositions[i3 + 1] = y;
+        fieldStarPositions[i3 + 2] = z;
+        
+        fieldStarOriginal[i3] = x;
+        fieldStarOriginal[i3 + 1] = y;
+        fieldStarOriginal[i3 + 2] = z;
+        
+        fieldStarVelocities[i3] = 0;
+        fieldStarVelocities[i3 + 1] = 0;
+        fieldStarVelocities[i3 + 2] = 0;
+
+        // Natural star color variation
+        const brightness = 0.3 + Math.random() * 0.7;
+        const colorRand = Math.random();
+        
+        if (colorRand > 0.92) {
+            // Blue-white hot stars
+            fieldStarColors[i3] = 0.8 * brightness;
+            fieldStarColors[i3 + 1] = 0.9 * brightness;
+            fieldStarColors[i3 + 2] = 1.0 * brightness;
+        } else if (colorRand > 0.85) {
+            // Yellow stars
+            fieldStarColors[i3] = 1.0 * brightness;
+            fieldStarColors[i3 + 1] = 0.95 * brightness;
+            fieldStarColors[i3 + 2] = 0.8 * brightness;
+        } else if (colorRand > 0.80) {
+            // Orange-ish stars
+            fieldStarColors[i3] = 1.0 * brightness;
+            fieldStarColors[i3 + 1] = 0.8 * brightness;
+            fieldStarColors[i3 + 2] = 0.6 * brightness;
+        } else {
+            // White stars (most common)
+            fieldStarColors[i3] = brightness;
+            fieldStarColors[i3 + 1] = brightness;
+            fieldStarColors[i3 + 2] = brightness + 0.05;
+        }
+    }
+
+    fieldStarGeometry.setAttribute('position', new THREE.BufferAttribute(fieldStarPositions, 3));
+    fieldStarGeometry.setAttribute('color', new THREE.BufferAttribute(fieldStarColors, 3));
+
+    const fieldStarMaterial = new THREE.PointsMaterial({
+        size: 0.04,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.95,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+    });
+
+    const fieldStarMesh = new THREE.Points(fieldStarGeometry, fieldStarMaterial);
+    scene.add(fieldStarMesh);
+
+    // ========== BRIGHT PROMINENT STARS ==========
+    const brightCount = 80;
+    const brightGeometry = new THREE.BufferGeometry();
+    const brightPositions = new Float32Array(brightCount * 3);
+    const brightColors = new Float32Array(brightCount * 3);
+    const brightPhases = new Float32Array(brightCount);
+
+    for (let i = 0; i < brightCount; i++) {
+        const i3 = i * 3;
+        
+        brightPositions[i3] = (Math.random() - 0.5) * 50;
+        brightPositions[i3 + 1] = Math.random() * 20 - 5;
+        brightPositions[i3 + 2] = -5 - Math.random() * 20;
+        
+        brightPhases[i] = Math.random() * Math.PI * 2;
+
+        // Bright stars - mostly white with some blue
+        if (Math.random() > 0.7) {
+            brightColors[i3] = 0.85;
+            brightColors[i3 + 1] = 0.9;
+            brightColors[i3 + 2] = 1.0;
+        } else {
+            brightColors[i3] = 1.0;
+            brightColors[i3 + 1] = 1.0;
+            brightColors[i3 + 2] = 1.0;
+        }
+    }
+
+    brightGeometry.setAttribute('position', new THREE.BufferAttribute(brightPositions, 3));
+    brightGeometry.setAttribute('color', new THREE.BufferAttribute(brightColors, 3));
+
+    const brightMaterial = new THREE.PointsMaterial({
+        size: 0.12,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.95,
+        blending: THREE.AdditiveBlending,
+    });
+
+    const brightMesh = new THREE.Points(brightGeometry, brightMaterial);
+    scene.add(brightMesh);
+
+    // ========== VERY FAINT BACKGROUND STARS ==========
+    const faintCount = 5000;
+    const faintGeometry = new THREE.BufferGeometry();
+    const faintPositions = new Float32Array(faintCount * 3);
+    const faintColors = new Float32Array(faintCount * 3);
+
+    for (let i = 0; i < faintCount; i++) {
+        const i3 = i * 3;
+        
+        faintPositions[i3] = (Math.random() - 0.5) * 80;
+        faintPositions[i3 + 1] = Math.random() * 40 - 10;
+        faintPositions[i3 + 2] = -30 - Math.random() * 30;
+
+        const brightness = 0.15 + Math.random() * 0.25;
+        faintColors[i3] = brightness;
+        faintColors[i3 + 1] = brightness;
+        faintColors[i3 + 2] = brightness + 0.03;
+    }
+
+    faintGeometry.setAttribute('position', new THREE.BufferAttribute(faintPositions, 3));
+    faintGeometry.setAttribute('color', new THREE.BufferAttribute(faintColors, 3));
+
+    const faintMaterial = new THREE.PointsMaterial({
         size: 0.015,
         vertexColors: true,
         transparent: true,
-        opacity: 0.8,
+        opacity: 0.5,
         blending: THREE.AdditiveBlending,
     });
 
-    const starsMesh = new THREE.Points(starsGeometry, starsMaterial);
-    scene.add(starsMesh);
+    const faintMesh = new THREE.Points(faintGeometry, faintMaterial);
+    scene.add(faintMesh);
 
-    // Create nebula dust clouds
-    const dustGeometry = new THREE.BufferGeometry();
-    const dustCount = 500;
-    const dustPositions = new Float32Array(dustCount * 3);
-    const dustColors = new Float32Array(dustCount * 3);
+    // Camera position
+    camera.position.set(0, 0, 15);
+    camera.lookAt(0, 3, 0);
 
-    for (let i = 0; i < dustCount * 3; i += 3) {
-        dustPositions[i] = (Math.random() - 0.5) * 15;
-        dustPositions[i + 1] = (Math.random() - 0.5) * 8;
-        dustPositions[i + 2] = (Math.random() - 0.5) * 15;
-
-        // Realistic nebula dust (blue/teal tones)
-        dustColors[i] = 0.1 + Math.random() * 0.2;
-        dustColors[i + 1] = 0.4 + Math.random() * 0.3;
-        dustColors[i + 2] = 0.6 + Math.random() * 0.3;
-    }
-
-    dustGeometry.setAttribute('position', new THREE.BufferAttribute(dustPositions, 3));
-    dustGeometry.setAttribute('color', new THREE.BufferAttribute(dustColors, 3));
-
-    const dustMaterial = new THREE.PointsMaterial({
-        size: 0.08,
-        vertexColors: true,
-        transparent: true,
-        opacity: 0.15,
-        blending: THREE.AdditiveBlending,
-    });
-
-    const dustMesh = new THREE.Points(dustGeometry, dustMaterial);
-    scene.add(dustMesh);
-
-    camera.position.z = 6;
-    camera.position.y = 2;
-
-    // Mouse movement effect
+    // ========== MOUSE INTERACTION ==========
     let mouseX = 0;
     let mouseY = 0;
-    let targetX = 0;
-    let targetY = 0;
+    let targetMouseX = 0;
+    let targetMouseY = 0;
 
     document.addEventListener('mousemove', (e) => {
         mouseX = (e.clientX / window.innerWidth) * 2 - 1;
         mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
     });
 
-    // Animation loop
+    // Click scatter effect
+    document.addEventListener('click', (e) => {
+        const clickX = (e.clientX / window.innerWidth) * 2 - 1;
+        const clickY = -(e.clientY / window.innerHeight) * 2 + 1;
+        
+        const scatterCenter = new THREE.Vector3(clickX * 15, clickY * 10, 0);
+        
+        // Scatter milky way stars
+        const mwPos = milkyWayGeometry.attributes.position.array;
+        for (let i = 0; i < milkyWayCount; i++) {
+            const i3 = i * 3;
+            const dx = mwPos[i3] - scatterCenter.x;
+            const dy = mwPos[i3 + 1] - scatterCenter.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 8 && distance > 0) {
+                const force = (1 - distance / 8) * 1.2;
+                milkyWayVelocities[i3] += (dx / distance) * force;
+                milkyWayVelocities[i3 + 1] += (dy / distance) * force;
+            }
+        }
+        
+        // Scatter field stars
+        const fsPos = fieldStarGeometry.attributes.position.array;
+        for (let i = 0; i < fieldStarCount; i++) {
+            const i3 = i * 3;
+            const dx = fsPos[i3] - scatterCenter.x;
+            const dy = fsPos[i3 + 1] - scatterCenter.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 10 && distance > 0) {
+                const force = (1 - distance / 10) * 1.5;
+                fieldStarVelocities[i3] += (dx / distance) * force;
+                fieldStarVelocities[i3 + 1] += (dy / distance) * force;
+            }
+        }
+    });
+
+    // ========== ANIMATION LOOP ==========
     const clock = new THREE.Clock();
 
     const animate = () => {
@@ -189,20 +350,95 @@ const initThreeJS = () => {
         const elapsedTime = clock.getElapsedTime();
 
         // Smooth mouse follow
-        targetX += (mouseX - targetX) * 0.02;
-        targetY += (mouseY - targetY) * 0.02;
+        targetMouseX += (mouseX - targetMouseX) * 0.03;
+        targetMouseY += (mouseY - targetMouseY) * 0.03;
 
-        // Rotate galaxy slowly
-        galaxyMesh.rotation.y = elapsedTime * 0.03 + targetX * 0.2;
-        galaxyMesh.rotation.x = Math.PI * 0.15 + targetY * 0.1;
+        // Update milky way positions
+        const mwPos = milkyWayGeometry.attributes.position.array;
+        for (let i = 0; i < milkyWayCount; i++) {
+            const i3 = i * 3;
+            
+            // Apply velocity
+            if (Math.abs(milkyWayVelocities[i3]) > 0.001 || Math.abs(milkyWayVelocities[i3 + 1]) > 0.001) {
+                mwPos[i3] += milkyWayVelocities[i3];
+                mwPos[i3 + 1] += milkyWayVelocities[i3 + 1];
+                
+                milkyWayVelocities[i3] *= 0.95;
+                milkyWayVelocities[i3 + 1] *= 0.95;
+                
+                mwPos[i3] += (milkyWayOriginal[i3] - mwPos[i3]) * 0.02;
+                mwPos[i3 + 1] += (milkyWayOriginal[i3 + 1] - mwPos[i3 + 1]) * 0.02;
+            }
+            
+            // Mouse attraction
+            const cursorX = targetMouseX * 10;
+            const cursorY = targetMouseY * 8;
+            const dx = cursorX - mwPos[i3];
+            const dy = cursorY - mwPos[i3 + 1];
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 8 && distance > 0.1) {
+                const pull = (1 - distance / 8) * 0.08;
+                mwPos[i3] += dx * pull * 0.02;
+                mwPos[i3 + 1] += dy * pull * 0.02;
+            }
+        }
+        milkyWayGeometry.attributes.position.needsUpdate = true;
 
-        // Background stars rotate very slowly
-        starsMesh.rotation.y = elapsedTime * 0.01;
-        starsMesh.rotation.x = elapsedTime * 0.005;
+        // Update field star positions
+        const fsPos = fieldStarGeometry.attributes.position.array;
+        for (let i = 0; i < fieldStarCount; i++) {
+            const i3 = i * 3;
+            
+            if (Math.abs(fieldStarVelocities[i3]) > 0.001 || Math.abs(fieldStarVelocities[i3 + 1]) > 0.001) {
+                fsPos[i3] += fieldStarVelocities[i3];
+                fsPos[i3 + 1] += fieldStarVelocities[i3 + 1];
+                
+                fieldStarVelocities[i3] *= 0.96;
+                fieldStarVelocities[i3 + 1] *= 0.96;
+                
+                fsPos[i3] += (fieldStarOriginal[i3] - fsPos[i3]) * 0.015;
+                fsPos[i3 + 1] += (fieldStarOriginal[i3 + 1] - fsPos[i3 + 1]) * 0.015;
+            }
+            
+            // Subtle mouse attraction
+            const cursorX = targetMouseX * 12;
+            const cursorY = targetMouseY * 8;
+            const dx = cursorX - fsPos[i3];
+            const dy = cursorY - fsPos[i3 + 1];
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 10 && distance > 0.1) {
+                const pull = (1 - distance / 10) * 0.05;
+                fsPos[i3] += dx * pull * 0.015;
+                fsPos[i3 + 1] += dy * pull * 0.015;
+            }
+        }
+        fieldStarGeometry.attributes.position.needsUpdate = true;
 
-        // Dust particles float
-        dustMesh.rotation.y = elapsedTime * 0.02;
-        dustMesh.position.y = Math.sin(elapsedTime * 0.2) * 0.3;
+        // Subtle scene movement with mouse
+        milkyWayMesh.rotation.z = targetMouseX * 0.02;
+        milkyWayMesh.rotation.x = targetMouseY * 0.015;
+        
+        glowMesh.rotation.z = targetMouseX * 0.02;
+        glowMesh.rotation.x = targetMouseY * 0.015;
+        
+        fieldStarMesh.rotation.y = targetMouseX * 0.03;
+        fieldStarMesh.rotation.x = targetMouseY * 0.02;
+
+        // Twinkle bright stars
+        const brightColors = brightGeometry.attributes.color.array;
+        for (let i = 0; i < brightCount; i++) {
+            const i3 = i * 3;
+            const twinkle = 0.75 + 0.25 * Math.sin(elapsedTime * (1.5 + i * 0.05) + brightPhases[i]);
+            brightColors[i3] = twinkle;
+            brightColors[i3 + 1] = twinkle;
+            brightColors[i3 + 2] = twinkle;
+        }
+        brightGeometry.attributes.color.needsUpdate = true;
+
+        // Very slow drift
+        faintMesh.rotation.y = elapsedTime * 0.002;
 
         renderer.render(scene, camera);
     };
@@ -219,49 +455,6 @@ const initThreeJS = () => {
 
 // Initialize Three.js when DOM is loaded
 document.addEventListener('DOMContentLoaded', initThreeJS);
-
-// ============================================
-// CUSTOM CURSOR
-// ============================================
-
-const initCursor = () => {
-    const cursorGlow = document.querySelector('.cursor-glow');
-    const cursorDot = document.querySelector('.cursor-dot');
-
-    if (!cursorGlow || !cursorDot || window.innerWidth <= 768) return;
-
-    let mouseX = 0, mouseY = 0;
-    let cursorX = 0, cursorY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-
-        // Dot follows immediately
-        cursorDot.style.left = `${mouseX - 4}px`;
-        cursorDot.style.top = `${mouseY - 4}px`;
-    });
-
-    // Smooth cursor follow
-    const animateCursor = () => {
-        cursorX += (mouseX - cursorX) * 0.12;
-        cursorY += (mouseY - cursorY) * 0.12;
-
-        cursorGlow.style.left = `${cursorX - 15}px`;
-        cursorGlow.style.top = `${cursorY - 15}px`;
-
-        requestAnimationFrame(animateCursor);
-    };
-    animateCursor();
-
-    // Cursor hover effect
-    const hoverElements = document.querySelectorAll('a, button, .btn, .skill-card, .project-card, .contact-card, .social-link, .hamburger');
-
-    hoverElements.forEach(el => {
-        el.addEventListener('mouseenter', () => cursorGlow.classList.add('hover'));
-        el.addEventListener('mouseleave', () => cursorGlow.classList.remove('hover'));
-    });
-};
 
 // ============================================
 // MOBILE HAMBURGER MENU
@@ -507,7 +700,7 @@ const initTypingEffect = () => {
     const roleHighlight = document.querySelector('.role-highlight');
     if (!roleHighlight) return;
 
-    const roles = ['Backend Specialist', 'Cloud Architect', 'DevOps Engineer', 'Problem Solver'];
+    const roles = ['Backend Engineer', 'Full Stack Developer', 'Problem Solver'];
     let roleIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -596,7 +789,6 @@ const throttle = (func, limit) => {
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    initCursor();
     initMobileMenu();
     initNavScroll();
     initSmoothScroll();
